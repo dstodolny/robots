@@ -1,5 +1,4 @@
 require "robots/version"
+require "robots/runner"
 
-module Robots
-  # Your code goes here...
-end
+module Robots; end
