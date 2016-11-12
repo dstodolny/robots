@@ -11,10 +11,13 @@ module Robots
       "E" => :east,
     }
 
-    attr_reader :instructions
+    attr_reader :instructions_array
 
-    def initialize(instructions)
-      @instructions = instructions.split("\n").reject(&:empty?)
+    def initialize(instructions: , syntax_checker: nil)
+      @instructions_array = instructions.split("\n").reject(&:empty?)
+      @syntax_checker = syntax_checker || SyntaxChecker.new
+
+      @syntax_checker.call(instructions)
     end
 
     def call
@@ -24,7 +27,7 @@ module Robots
     private
 
     def grid_params
-      width, height = instructions.first.split("\s").reject(&:empty?).map(&:to_i)
+      width, height = instructions_array.first.split("\s").reject(&:empty?).map(&:to_i)
 
       GridParams.new(width, height)
     end
@@ -32,7 +35,7 @@ module Robots
     def object_params_collection
       params_collection = []
 
-      instructions[1..-1].reject(&:empty?).each_slice(2) do |object_instructions|
+      instructions_array[1..-1].reject(&:empty?).each_slice(2) do |object_instructions|
         position = object_instructions.first.split("\s").reject(&:empty?)
         x = position[0].to_i
         y = position[1].to_i

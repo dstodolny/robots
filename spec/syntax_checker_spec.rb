@@ -15,7 +15,7 @@ describe Robots::SyntaxChecker do
     context "with incorrect instructions" do
       it "raises an InstructionsSyntaxError if the first line does not describe the grid" do
         INCORRECT_INSTRUCTIONS.each do |instructions|
-          expect { described_class.new(instructions).call }.to raise_error(Robots::SyntaxChecker::InstructionsSyntaxError)
+          expect { described_class.new.(instructions) }.to raise_error(Robots::SyntaxChecker::InstructionsSyntaxError)
         end
       end
     end
@@ -24,7 +24,7 @@ describe Robots::SyntaxChecker do
       it "does not raise any error if the first line describes the grid" do
         instructions = load_instructions
 
-        expect { described_class.new(instructions).call }.to_not raise_error
+        expect { described_class.new.(instructions) }.to_not raise_error
       end
     end
   end
