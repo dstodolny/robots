@@ -4,7 +4,8 @@ module Robots
 
     def initialize(instructions: , instruction_parser: nil)
       @instructions = instructions
-      @instruction_parser = instruction_parser || InstructionParser.new
+      @instruction_parser = instruction_parser ||
+        InstructionParser.new(instructions: instructions)
     end
 
     def call
