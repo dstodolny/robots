@@ -5,7 +5,10 @@ describe Robots do
     expect(Robots::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "consumes instructions and generates correct output" do
+    instructions = IO.read(File.dirname(__FILE__) + "/fixtures/example")
+    output = IO.read(File.dirname(__FILE__) + "/fixtures/example.out")
+
+    expect(Robots::Runner.new(instructions: instructions).call).to eq(output)
   end
 end
