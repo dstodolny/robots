@@ -1,14 +1,14 @@
 module Robots
   class Runner
-    attr_reader :instruction_parser
+    attr_reader :instructions
 
-    def initialize(instructions: , instruction_parser: nil)
+    def initialize(instructions: ,instruction_parser: nil)
       @instructions = instructions
       @instruction_parser = instruction_parser ||
         InstructionParser.new(instructions: instructions)
     end
 
-    def call
+    def execute
       # TODO
     end
   end

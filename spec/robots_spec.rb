@@ -9,6 +9,6 @@ describe Robots do
     instructions = IO.read(File.dirname(__FILE__) + "/fixtures/example")
     output = IO.read(File.dirname(__FILE__) + "/fixtures/example.out")
 
-    expect(Robots::Runner.new(instructions: instructions).call).to eq(output)
+    expect(Robots::Runner.new(instructions: instructions).execute).to eq(output)
   end
 end
