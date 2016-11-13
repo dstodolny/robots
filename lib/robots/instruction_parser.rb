@@ -4,13 +4,6 @@ module Robots
     GridParams = Struct.new(:width, :height)
     ObjectParams = Struct.new(:x, :y, :orientation, :actions)
 
-    COMPAS = {
-      "N" => :north,
-      "W" => :west,
-      "S" => :south,
-      "E" => :east,
-    }
-
     attr_reader :instructions
 
     def initialize(instructions: , syntax_checker: nil)
@@ -40,11 +33,11 @@ module Robots
       params_collection = []
 
       instructions_array[1..-1].reject(&:empty?).each_slice(2) do |object_instructions|
-        position = object_instructions.first.split("\s").reject(&:empty?)
+        object_params = object_instructions.first.split("\s").reject(&:empty?)
 
-        x = position[0].to_i
-        y = position[1].to_i
-        orientation = COMPAS[position[2]]
+        x = object_params[0].to_i
+        y = object_params[1].to_i
+        orientation = Robots::COMPAS[object_params[2]]
 
         actions = object_instructions.last
 

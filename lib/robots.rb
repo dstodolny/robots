@@ -4,4 +4,11 @@ require "robots/instruction_parser"
 require "robots/syntax_checker"
 require "robots/grid"
 
-module Robots; end
+module Robots
+  COMPAS = {
+    "N" => :north,
+    "W" => :west,
+    "S" => :south,
+    "E" => :east,
+  }.freeze
+end
