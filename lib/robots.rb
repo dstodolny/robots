@@ -3,6 +3,7 @@ require "robots/runner"
 require "robots/instruction_parser"
 require "robots/syntax_checker"
 require "robots/grid"
+require "robots/position"
 
 module Robots
   COMPAS = {
