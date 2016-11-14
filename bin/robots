@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require "robots"
+
+input = STDIN.read
+
+begin
+  puts Robots::Runner.new(instructions: input).execute
+rescue Robots::SyntaxChecker::InstructionsSyntaxError
+  puts "Provided instructions are in the wrong format"
+end
