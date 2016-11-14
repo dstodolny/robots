@@ -23,5 +23,10 @@ module Robots
     def scented_positions
       @scented_positions ||= []
     end
+
+    def outside?(position)
+      position[0] > width || position[1] > height ||
+        position[0] < 0 || position[1] < 0
+    end
   end
 end

@@ -31,4 +31,41 @@ describe Robots::Grid do
       expect(grid.scented_positions).to include(position)
     end
   end
+
+  describe "#outside?" do
+    it "returns true if position x is greater than grid's width" do
+      grid = described_class.new(width: 2, height: 2)
+      position = Vector[3, 2]
+
+      expect(grid.outside?(position)).to eq(true)
+    end
+
+    it "returns true if position x is less than 0" do
+      grid = described_class.new(width: 2, height: 2)
+      position = Vector[-1, 2]
+
+      expect(grid.outside?(position)).to eq(true)
+    end
+
+    it "returns true if position y is greater than grid's height" do
+      grid = described_class.new(width: 2, height: 2)
+      position = Vector[2, 3]
+
+      expect(grid.outside?(position)).to eq(true)
+    end
+
+    it "returns true if position y is less than 0" do
+      grid = described_class.new(width: 2, height: 2)
+      position = Vector[2, -1]
+
+      expect(grid.outside?(position)).to eq(true)
+    end
+
+    it "returns false if position is inside the grid" do
+      grid = described_class.new(width: 2, height: 2)
+      position = Vector[1, 2]
+
+      expect(grid.outside?(position)).to eq(false)
+    end
+  end
 end
