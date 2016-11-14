@@ -68,4 +68,22 @@ describe Robots::Grid do
       expect(grid.outside?(position)).to eq(false)
     end
   end
+
+  describe "#scented?" do
+    it "returns true if position is in scented positions" do
+      grid = described_class.new(width: 2, height: 2)
+      position = Vector[1, 0]
+
+      grid.scented_positions.push(position)
+
+      expect(grid.scented?(position)).to eq(true)
+    end
+
+    it "returns false if position is not in scented positions" do
+      grid = described_class.new(width: 2, height: 2)
+      position = Vector[1, 0]
+
+      expect(grid.scented?(position)).to eq(false)
+    end
+  end
 end

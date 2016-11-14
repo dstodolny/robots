@@ -28,5 +28,9 @@ module Robots
       position[0] > width || position[1] > height ||
         position[0] < 0 || position[1] < 0
     end
+
+    def scented?(position)
+      scented_positions.include?(position)
+    end
   end
 end
