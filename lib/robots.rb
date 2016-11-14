@@ -16,4 +16,11 @@ module Robots
     "S" => :south,
     "W" => :west,
   }.freeze
+
+  UNIT_VECTORS = {
+    north: Vector[0, 1],
+    east:  Vector[1, 0],
+    south: Vector[0, -1],
+    west:  Vector[-1, 0]
+  }.freeze
 end
