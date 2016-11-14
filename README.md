@@ -1,41 +1,78 @@
 # Robots
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/robots`. To experiment with that code, run `bin/console` for an interactive prompt.
+The surface of Mars is modelled by a rectangular grid around which robots are able to move according to instructions provided from Earth. This program determines each sequence of robot positions and reports the final position of the robot.
 
-TODO: Delete this and the text above, and describe your gem
+Since the grid is rectangular and bounded (…yes Mars is a strange planet), a robot that moves “off” an edge of the grid is lost forever. However, lost robots leave a robot “scent” that prohibits future robots from dropping off the world at the same grid point. The scent is left at the last grid position the robot occupied before disappearing over the edge. An instruction to move “off” the world from a grid point from which a robot has been previously lost is simply ignored by the current robot.
 
-## Installation
+## Instalation
 
-Add this line to your application's Gemfile:
+Build the gem:
 
 ```ruby
-gem 'robots'
+rake build
 ```
 
-And then execute:
+And then install:
 
-    $ bundle
+```ruby
+gem install pkg/favourite_language-0.1.0.gem
+```
 
-Or install it yourself as:
+Alternatively you can run the script directly from the `bin` directory without building and installing the gem.
 
-    $ gem install robots
+```ruby
+ruby -Ilib bin/robots
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+To execute instructions execute the script and type them on the fly until `EOF` has been reached `(CTRL-D)`.
 
-## Development
+```ruby
+robots
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+You can provide external instructions file as an input to the program.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+robots < instructions_file
+```
 
-## Contributing
+As an example you can use a spec fixture as an input.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/robots.
+```ruby
+robots < spec/fixtures/example
+```
 
+## Instructions
 
-## License
+The first line of input is the upper-right coordinates of the rectangular world, the lower-left coordinates are assumed to be `(0, 0)`. The remaining input consists of a sequence of robot positions and instructions (two lines per robot). A position consists of two integers specifying the initial coordinates of the robot and an orientation (`N`, `S`, `E`, `W`), all separated by whitespace on one line.  A robot commands is a string of the letters on one line.
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+At the moment following robot commands are available:
 
+```
+- F: the robot moves forward one grid point in the direction of the current orientation and maintains the same orientation.
+- R: the robot turns right 90 degrees and remains on the current grid point
+- L: the robot turns left 90 degrees and remains on the current grid point
+```
+
+## Extending robot commands
+
+Robot commands can be easily extended. Create a new file with the name `[LETTER].rb` and place it in the `lib/robots/commands` directory. Use the template mentioned below for you robot instruction implementation. After that, you will be able to use `[LETTER]` as a new robot command.
+
+```ruby
+module Robots
+  module Commands
+    class [LETTER]
+      def initialize(robot, grid)
+        @robot = robot
+        @grid = grid
+      end
+
+      def execute!
+        # Your implementation
+      end
+    end
+  end
+end
+```
