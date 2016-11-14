@@ -6,6 +6,7 @@ require "robots/syntax_checker"
 require "robots/grid"
 require "robots/robot"
 require "robots/commands_resolver"
+require "robots/status_builder"
 
 Dir[File.dirname(__FILE__) + "/robots/commands/*.rb"].each { |file| require file }
 
