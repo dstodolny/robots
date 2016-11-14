@@ -8,4 +8,6 @@ begin
   puts Robots::Runner.new(instructions: input).execute
 rescue Robots::SyntaxChecker::InstructionsSyntaxError
   puts "Provided instructions are in the wrong format"
+rescue Robots::Grid::CoordinateValueError
+  puts "Exceeded maximum grid dimension value"
 end
