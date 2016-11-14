@@ -21,5 +21,9 @@ module Robots
     def set_position(new_position)
       @position = new_position
     end
+
+    def set_orientation(new_orientation)
+      @orientation = new_orientation
+    end
   end
 end

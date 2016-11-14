@@ -47,6 +47,17 @@ describe Robots::Robot do
     end
   end
 
+  describe "#set_orientation" do
+    it "sets the new orientation to the robot" do
+      robot = build_robot
+      new_orientation = :east
+
+      robot.set_orientation(new_orientation)
+
+      expect(robot.orientation).to eq(new_orientation)
+    end
+  end
+
   def build_robot(status: :operating)
     described_class.new(
       position: Vector[1, 1],
