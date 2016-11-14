@@ -23,7 +23,7 @@ describe Robots::Grid do
 
   describe "#set_scented_position" do
     it "adds a possition to scented positions list" do
-      position = double
+      position = Vector[0, 0]
       grid = described_class.new(width: 4, height: 4)
 
       grid.set_scented_position(position)

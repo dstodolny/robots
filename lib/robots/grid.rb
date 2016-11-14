@@ -4,7 +4,7 @@ module Robots
 
     MAX_COORDINATE = 50.freeze
 
-    attr_reader :scented_positions
+    attr_reader :width, :height, :scented_positions
 
     def initialize(width:, height:)
       if width > MAX_COORDINATE || height > MAX_COORDINATE
