@@ -23,4 +23,11 @@ module Robots
     south: Vector[0, -1],
     west:  Vector[-1, 0]
   }.freeze
+
+  ROTATIONS = {
+    north: :east,
+    east: :south,
+    south: :west,
+    west: :north
+  }.freeze
 end
