@@ -9,8 +9,8 @@ require "robots/robot"
 module Robots
   COMPAS = {
     "N" => :north,
-    "W" => :west,
-    "S" => :south,
     "E" => :east,
+    "S" => :south,
+    "W" => :west,
   }.freeze
 end
