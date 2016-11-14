@@ -2,7 +2,7 @@ module Robots
   class InstructionParser
     WorldParams = Struct.new(:grid, :objects)
     GridParams = Struct.new(:width, :height)
-    ObjectParams = Struct.new(:x, :y, :orientation, :actions)
+    ObjectParams = Struct.new(:x, :y, :orientation, :commands)
 
     attr_reader :instructions
 
@@ -39,9 +39,9 @@ module Robots
         y = object_params[1].to_i
         orientation = Robots::COMPAS[object_params[2]]
 
-        actions = object_instructions.last
+        commands = object_instructions.last
 
-        params_collection << ObjectParams.new(x, y, orientation, actions)
+        params_collection << ObjectParams.new(x, y, orientation, commands)
       end
 
       params_collection

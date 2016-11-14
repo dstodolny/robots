@@ -40,7 +40,7 @@ describe Robots::InstructionParser do
       expect(world_params[:objects][0][:x]).to eq(1)
       expect(world_params[:objects][0][:y]).to eq(1)
       expect(world_params[:objects][0][:orientation]).to eq(:east)
-      expect(world_params[:objects][0][:actions]).to eq("RFRFRFRF")
+      expect(world_params[:objects][0][:commands]).to eq("RFRFRFRF")
     end
   end
 
