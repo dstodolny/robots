@@ -5,6 +5,7 @@ require "robots/instruction_parser"
 require "robots/syntax_checker"
 require "robots/grid"
 require "robots/robot"
+require "robots/commands_resolver"
 
 module Robots
   COMPAS = {
