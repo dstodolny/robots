@@ -7,6 +7,8 @@ require "robots/grid"
 require "robots/robot"
 require "robots/commands_resolver"
 
+Dir[File.dirname(__FILE__) + "/robots/commands/*.rb"].each { |file| require file }
+
 module Robots
   COMPAS = {
     "N" => :north,
